@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Car_LoactionV6.Models.Cars>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container mt-5 mb-5">
+    @if ((string)Session["Type"] == "Admin")
+    {
+        <a style="margin-left:100px;" href="@Url.Action("Create","Cars",null,null)"> <button type="button" class="btn btn-outline-primary"> + Add Cars</button></a>
+        <a style="margin-left:110px;" href="@Url.Action("Create","Modeles",null,null)"> <button type="button" class="btn btn-outline-primary"> + Add Model</button></a>
+        <a style="margin-left:120px;" href="@Url.Action("Create","Categories",null,null)"> <button type="button" class="btn btn-outline-primary"> + Add Category</button></a>
+    }
+    <div class="d-flex justify-content-center row">
+
+        <div class="col-md-10">
+
+            @foreach (var item in Model)
+            {
+                <div class="row p-2 bg-white border rounded">
+                    <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="@Url.Content("~/photos/" + item.Image)"></div>
+                    <div class="col-md-6 mt-1">
+                        <h5>@Html.DisplayFor(modelItem => item.Modele.NomMarque)</h5>
+                        <div class="d-flex flex-row">
+                            <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span></span>
+                        </div>
+                        <div class="mt-1 mb-1 spec-1"><span>@Html.DisplayFor(modelItem => item.Matriculation)</div>
+                        <div class="mt-1 mb-1 spec-1"><span>@Html.DisplayFor(modelItem => item.Modele.NomSerie)</span><span></span><span class="dot"></span><span>@Html.DisplayFor(modelItem => item.TypeCarburant)<br></span></div>
+                        <p class="text-justify text-truncate para mb-0">@Html.DisplayFor(modelItem => item.Category.NomCategory) <br><br></p>
+                    </div>
+                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                        <div class="d-flex flex-row align-items-center">
+                            <h4 class="mr-1"> @Html.DisplayFor(modelItem => item.Prix) MAD</h4>
+                        </div>
+                        <h6 class="text-success">+30j -60%</h6>
+                        <div class="d-flex flex-column mt-4">
+                            <a class="d-flex flex-column mt-4" href="@Url.Action("Details",  new { id = item.IdCar })"><button class="btn btn-primary btn-sm" type="button">Details</button></a>
+                            @if ((string)Session["Type"] == "Client")
+                            {
+                                
+                                <a class="d-flex flex-column mt-4" href="@Url.Action("Create", "Rentals", new { id = item.IdCar }, null)"><button class="btn btn-outline-primary btn-sm mt-2" type="button">BOOK NOW</button></a>
+                            }
+                            @if((string)Session["Type"] == "Admin")
+                            {
+                            <a class="d-flex flex-column mt-4" href="@Url.Action("Delete", "Cars", new { id = item.IdCar }, null)"><button class="btn btn-outline-success btn-sm mt-2 " type="button">DELETE</button></a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    body {
+        background: #eee
+    }
+
+    .ratings i {
+        font-size: 16px;
+        color: red
+    }
+
+    .strike-text {
+        color: red;
+        text-decoration: line-through
+    }
+
+    .product-image {
+        width: 100%
+    }
+
+    .dot {
+        height: 7px;
+        width: 7px;
+        margin-left: 6px;
+        margin-right: 6px;
+        margin-top: 3px;
+        background-color: blue;
+        border-radius: 50%;
+        display: inline-block
+    }
+
+    .spec-1 {
+        color: #938787;
+        font-size: 15px
+    }
+
+    h5 {
+        font-weight: 400
+    }
+
+    .para {
+        font-size: 16px
+    }
+</style>
+
+

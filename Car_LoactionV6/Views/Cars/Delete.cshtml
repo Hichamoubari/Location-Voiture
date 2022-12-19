@@ -1,0 +1,81 @@
+﻿@model Car_LoactionV6.Models.Cars
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cars</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.NomCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.NomCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modele.NomMarque)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modele.NomMarque)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Matriculation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Matriculation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCirculation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCirculation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeCarburant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeCarburant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prix)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

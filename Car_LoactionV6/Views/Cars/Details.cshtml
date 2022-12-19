@@ -1,0 +1,48 @@
+﻿@model Car_LoactionV6.Models.Cars
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row m-0">
+        <div class="col-lg-7 pb-5 pe-lg-5">
+            <div class="row">
+                <div class="col-12 p-5">  <img src="@Url.Content("~/photos/"+Model.Image)" alt=""> </div>
+            </div>
+        </div>
+        <div class="col-lg-5 p-0 ps-lg-4">
+            <div class="row m-0">
+                <div class="col-12 px-4">
+                    <div class="d-flex align-items-end mt-4 mb-2">
+                        <p class="h4 m-0"><span class="pe-1">@Html.DisplayFor(model => model.Modele.NomMarque)</span></p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Category</p>
+                        <p class="fs-14 fw-bold">@Html.DisplayFor(model => model.Category.NomCategory)</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Serie</p>
+                        <p class="fs-14 fw-bold">@Html.DisplayFor(model => model.Modele.NomSerie)</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">+30 jours</p>
+                        <p class="fs-14 fw-bold">-60%</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Matriculation</p>
+                        <p class="fs-14 fw-bold">@Html.DisplayFor(model => model.Matriculation)</p>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="textmuted">Prix/JOUR</p>
+                        <p class="fs-14 fw-bold">@Html.DisplayFor(model => model.Prix) DH</p>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+    </div>
+
+</div>
+           

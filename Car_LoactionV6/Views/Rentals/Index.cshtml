@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Car_LoactionV6.Models.Rental>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase mb-0">Manage Rental</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table no-wrap user-table mb-0">
+                        <thead>
+                            <tr>
+
+                                <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
+
+                                <th scope="col" class="border-0 text-uppercase font-medium">Email</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Modele</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Premier Jour</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Dernier Jour</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Prix</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Status</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+
+                                    <td>
+                                        <h5 class="font-medium mb-0"> @Html.DisplayFor(modelItem => item.Users.Nom)<h5>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-muted">@Html.DisplayFor(modelItem => item.Users.AdresseMail)</span>
+
+                                    </td>
+                                    <td>
+                                        <span class="text-muted">@Html.DisplayFor(modelItem => item.Cars.Modele.NomMarque)</span>
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateDebut)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateFin)
+                                    </td>
+                                    <td>
+                                        @if (item.TypeLocation == "Longue duree")
+                                        {
+                                            int d = (item.DateFin - item.DateDebut).Days;
+                                            double prix = d * item.Cars.Prix * 0.6;
+                                            <p>@prix</p>
+                                        }
+                                        else
+                                        {
+                                            int d = (item.DateFin - item.DateDebut).Days;
+                                            double prix = d * item.Cars.Prix;
+                                            <p>@prix</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.Status == "Accepter")
+                                        {
+                                            <span style="color:green">
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </span>
+                                        }
+                                        @if (item.Status == "En Attente")
+                                        {
+                                            <span style="color:orange">
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </span>
+                                        }
+                                        @if (item.Status == "Declined")
+                                        {
+                                            <span style="color:red">
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </span>
+                                        }
+                                    </td>
+
+                                    <td>
+
+                                        @Html.ActionLink("Details", "Details", new { id = item.IdRental })
+
+
+
+
+                                    </td>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                    <style>
+
+                        body {
+                            background: #edf1f5;
+                            margin-top: 20px;
+                        }
+
+                        .card {
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            min-width: 0;
+                            word-wrap: break-word;
+                            background-color: #fff;
+                            background-clip: border-box;
+                            border: 0 solid transparent;
+                            border-radius: 0;
+                        }
+
+                        .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
+                            width: 50px;
+                            height: 50px;
+                            padding: 14px 15px;
+                            font-size: 18px;
+                            line-height: 23px;
+                        }
+
+                        .text-muted {
+                            color: #8898aa !important;
+                        }
+
+                        [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+                            cursor: pointer;
+                        }
+
+                        .btn-circle {
+                            border-radius: 100%;
+                            width: 40px;
+                            height: 40px;
+                            padding: 10px;
+                        }
+
+                        .user-table tbody tr .category-select {
+                            max-width: 500px;
+                            border-radius: 20px;
+                    </style>
